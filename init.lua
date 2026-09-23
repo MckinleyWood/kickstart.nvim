@@ -171,6 +171,9 @@ do
   -- instead raise a dialog asking if you wish to save the current file(s)
   -- See `:help 'confirm'`
   vim.o.confirm = true
+
+  -- Pair corresponding lines inside blocks and highlight words in git diffs
+  vim.opt.diffopt:append('linematch:60')
 end
 
 -- ============================================================
@@ -701,7 +704,7 @@ do
     --    https://github.com/pmizio/typescript-tools.nvim
     --
     -- But for many setups, the LSP (`ts_ls`) will work just fine
-    -- ts_ls = {},
+    ts_ls = {},
 
     stylua = {}, -- Used to format Lua code
 
@@ -799,6 +802,10 @@ do
     },
     -- You can also specify external formatters in here.
     formatters_by_ft = {
+      ts = { "biome" },
+      tsx = { "biome" },
+      js = { "biome" },
+      json = { "biome" },
       -- rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
